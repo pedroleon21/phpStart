@@ -4,20 +4,19 @@ namespace PrimeirosPassos\Model;
 
 use PrimeirosPassos\Model\DataModel\CPF;
 
-
 class Pessoa
 {
     private string $nome;
     private string$sobrenome;
-    private DateTime $dataNacimento;
     private $conjuge;
     private CPF $cpf;
-    public function __construct($nome, $sobrenome, $dataNacimento)
+    
+    public function __construct($nome, $sobrenome)
     {
         $this->nome = $nome;
         $this->sobrenome = $sobrenome;
-        $this->dataNacimento = $dataNacimento;
-        $this->conjuge = 0;
+        $this->conjuge=NULL;
+        $this->conjuge = NULL;
     }
     
     public function casar(Pessoa $conjuge): self
@@ -27,7 +26,7 @@ class Pessoa
             $conjuge->conjuge = $this;
             return $this;
         }
-        throw new Exception('alguem ta sendo enganado!');
+        return $this;
     }
 
     public function casado()
@@ -46,16 +45,6 @@ class Pessoa
     public function setNome(string $nome): self
     {
         $this->nome = $nome;
-        return $this;
-    }
-    public function getDataNacimento(): DateTime
-    {
-        return $this->dataNacimento;
-    }
-
-    public function setDataNadimento(DateTime $dataNacimento): self
-    {
-        $this->dataNacimento = $dataNacimento;
         return $this;
     }
 
