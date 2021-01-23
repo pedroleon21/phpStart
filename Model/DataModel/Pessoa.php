@@ -1,40 +1,20 @@
 <?php
 
-namespace PrimeirosPassos\Model;
+namespace PrimeirosPassos\Model\DataModel;
 
 use PrimeirosPassos\Model\DataModel\CPF;
 
-class Pessoa
+abstract class Pessoa
 {
     private string $nome;
-    private string$sobrenome;
-    private $conjuge;
+    private string $sobrenome;
     private CPF $cpf;
     
-    public function __construct($nome, $sobrenome)
+    public function __construct(string $nome, string $sobrenome,string $cpf)
     {
         $this->nome = $nome;
         $this->sobrenome = $sobrenome;
-        $this->conjuge=NULL;
-        $this->conjuge = NULL;
-    }
-    
-    public function casar(Pessoa $conjuge): self
-    {
-        if (!$this->casado() && !$conjuge->casado()) {
-            $this->conjuge = $conjuge;
-            $conjuge->conjuge = $this;
-            return $this;
-        }
-        return $this;
-    }
-
-    public function casado()
-    {
-        if ($this->conjuge) {
-            return true;
-        }
-        return false;
+        $this->cpf = new CPF($cpf);
     }
 
     public function getNome(): string
@@ -47,7 +27,6 @@ class Pessoa
         $this->nome = $nome;
         return $this;
     }
-
     public function setSobrenome(string $sobrenome): self
     {
         $this->sobrenome = $sobrenome;
@@ -58,8 +37,7 @@ class Pessoa
     {
         return $this->sobrenome;
     }
-    public function getCPF():string
-    {
+    public function getCpf(){
         return $this->cpf->getCPF();
     }
 }

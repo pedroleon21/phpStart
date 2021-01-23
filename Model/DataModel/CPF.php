@@ -7,9 +7,13 @@ class CPF{
 
     public function __construct(string $cpf)
     {
-        $this->$cpf;
+        $this->cpf=$cpf;
     }
-
+    public function setCpf(string $cpf):self
+    {
+        $this->cpf = $cpf;
+        return $this;
+    }
     public function getCPF(){
         return $this->cpf;
     }
